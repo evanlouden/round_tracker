@@ -1,15 +1,61 @@
-<%= @user.name %> <%= @user.handicap %>
-<% @user.rounds.each do |round| %>
-  <li>
-    <%= round.date %>
-  </li>
-  <li>
-    <%= round.course.name %>
-  </li>
-  <li>
-    <%= round.score %>
-  </li>
-  <li>
-    <%= round.handicap_differential %>
-  </li>
+<div class="flex flex-col m-4 rounded-lg border-gray-300 border shadow-md">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="bg-white flex justify-between inline-block min-w-full overflow-hidden rounded-lg">
+      <div class="px-6 py-3 text-xl"><%= @user.name %></div>
+      <div class="px-6 py-3 text-xl"><%= @user.handicap %></div>
+    </div>
+  </div>
+</div>
+
+<%= link_to new_user_round_path(@user), class: "no-underline" do %>
+  <div class='<%= "bg-orange-500 hover:bg-orange-700 text-white text-xl font-bold py-2 px-4 mx-4 my-8 rounded shadow-lg text-center" %>'>
+    Add Round
+  </div>
 <% end %>
+
+<div class="flex flex-col m-4 rounded-lg border-gray-300 border shadow-md ">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="align-middle inline-block min-w-full overflow-hidden rounded-lg">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs bold leading-4 font-medium text-gray-900 uppercase tracking-wider">
+              Course/Date
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs bold leading-4 font-medium text-gray-900 uppercase tracking-wider">
+              Score
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-200 text-left text-xs bold leading-4 font-medium text-gray-900 uppercase tracking-wider">
+              Diff
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <% @rounds.each do |round| %>
+          <tr>
+            <td class="px-6 py-2 lg:py-6 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= round.course.name %>
+              </div>
+              <div class="text-xs leading-5 text-gray-800 italic">
+                <%= round.date.strftime("%b %e, %Y") %>
+              </div>
+            </td>
+            <td class="px-6 py-2 lg:py-6 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= round.score %>
+              </div>
+            </td>
+            <td class="px-6 py-2 lg:py-6 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <% color = round.handicap_differential < @user.handicap ? "green" : "red" %>
+              <span class='<%= "text-#{color}-600" %>'>
+                <%= round.handicap_differential %>
+              </span>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

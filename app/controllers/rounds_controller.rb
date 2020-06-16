@@ -8,8 +8,7 @@ class RoundsController < ApplicationController
   def create
     @round = Round.new(round_params)
     if @round.save
-      redirect_to userexit
-      _path(@round.user_id)
+      redirect_to user_path(@round.user_id)
     else
       render :new
     end
