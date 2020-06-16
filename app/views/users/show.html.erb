@@ -1,0 +1,15 @@
+<%= @user.name %> <%= @user.handicap %>
+<% @user.rounds.each do |round| %>
+  <li>
+    <%= round.date %>
+  </li>
+  <li>
+    <%= round.course.name %>
+  </li>
+  <li>
+    <%= round.score %>
+  </li>
+  <li>
+    <%= round.handicap_differential %>
+  </li>
+<% end %>

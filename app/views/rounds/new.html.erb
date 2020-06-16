@@ -1,0 +1,32 @@
+<% if @round.errors.present %>
+  <%= @round.errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+  <% end %>
+<% end %>
+<%= form_with scope: :round, url: user_rounds_path, local: true do |form| %>
+  <p>
+    <%= form.label :date %>
+    <%= date_field(:round, :date) %>
+  </p>
+  <p>
+    <%= collection_select(:round, :course_id, Course.alaphabetical, :id, :name) %>
+  </p>
+  <p>
+    <%= form.label :score %>
+    <%= number_field(:round, :score, in: 60.0..90.0, step: 0.1) %>
+  </p>
+  <p>
+    <%= form.label :rating %>
+    <%= number_field(:round, :rating, in: 60.0..90.0, step: 0.1) %>
+  </p>
+  <p>
+    <%= form.label :slope %>
+    <%= number_field(:round, :slope, in: 100..150, step: 1) %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
