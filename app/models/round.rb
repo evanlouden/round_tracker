@@ -10,6 +10,6 @@ class Round < ApplicationRecord
   validates :slope, presence: true
 
   def handicap_differential
-    HandicapDifferential.new(rating: rating, score: score, slope: slope).calculate
+    HandicapDifferential.calculate(self)
   end
 end

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class HandicapDifferential
-  attr_reader :rating, :score, :slope
+  attr_reader :round
+  delegate :score, :rating, :slope, to: :round
 
-  def initialize(rating:, score:, slope:)
-    @rating = rating
-    @score = score
-    @slope = slope
+  def self.calculate(round)
+    new(round).calculate
+  end
+
+  def initialize(round)
+    @round = round
   end
 
   def calculate
