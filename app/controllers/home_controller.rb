@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @user = User.find(1)
+    @user = User.includes(rounds: :course).where(id: 1).first
   end
 end
