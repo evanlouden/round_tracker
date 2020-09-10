@@ -8,7 +8,7 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.3"
 gem "rails", "~> 6.0.2", ">= 6.0.2.2"
 gem "simple_form", "~> 5.0.2"
-gem "webpacker", "~> 5.x"
+gem "webpacker", "~> 5"
 
 group :development, :test do
   gem "pry-byebug"
