@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @users = User.order(:name)
+    @user = User.find(1)
   end
 end
