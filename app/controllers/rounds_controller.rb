@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RoundsController < ApplicationController
+  before_action :set_course, only: :create
+
   def new
     @round = Round.new
   end
@@ -22,7 +24,13 @@ class RoundsController < ApplicationController
       :rating,
       :slope,
       :date,
-      :course_id
-    ).merge(user_id: params[:user_id])
+    ).merge(
+      user_id: params[:user_id],
+      course_id: @course.id
+    )
+  end
+
+  def set_course
+    @course ||= Course.find_or_create_by(name: params[:round][:course])
   end
 end
