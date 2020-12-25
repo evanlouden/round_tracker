@@ -1,0 +1,69 @@
+<div class="flex flex-col m-4 border border-gray-300 rounded-lg shadow-md">
+  <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="flex justify-between inline-block min-w-full overflow-hidden bg-white rounded-lg">
+      <div class="px-6 py-3 text-xl"><%= @user.name %></div>
+      <div class="px-6 py-3 text-xl"><%= @user.handicap %></div>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col m-4 border border-gray-300 rounded-lg shadow-md ">
+  <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="inline-block min-w-full overflow-hidden align-middle rounded-lg">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th class="py-3 text-xs font-medium leading-4 tracking-wider text-center text-gray-900 uppercase bg-gray-200 border-b border-gray-200 bold">
+              Course/Date
+            </th>
+            <th class="py-3 text-xs font-medium leading-4 tracking-wider text-center text-gray-900 uppercase bg-gray-200 border-b border-gray-200 bold">
+              Score
+            </th>
+            <th class="py-3 text-xs font-medium leading-4 tracking-wider text-center text-gray-900 uppercase bg-gray-200 border-b border-gray-200 bold">
+              Diff
+            </th>
+            <th class="py-3 text-xs font-medium leading-4 tracking-wider text-center text-gray-900 uppercase bg-gray-200 border-b border-gray-200 bold">
+              Handi
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <% @user.rounds.each do |round| %>
+          <% round_presenter = RoundPresenter.new(round) %>
+          <tr>
+            <td class="py-2 pl-2 whitespace-no-wrap border-b border-gray-200 lg:py-6">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= course_name(round.course) %>
+              </div>
+              <div class="text-xs italic leading-5 text-gray-800">
+                <%= round.date.strftime("%b %e, %Y") %>
+              </div>
+            </td>
+            <td class="px-2 py-2 text-center whitespace-no-wrap border-b border-gray-200 lg:py-6">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= round.score %>
+              </div>
+            </td>
+            <td class="px-2 py-2 text-center whitespace-no-wrap border-b border-gray-200 lg:py-6">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= round_presenter.round_differential %>
+              </div>
+            </td>
+            <td class="px-2 py-2 text-center whitespace-no-wrap border-b border-gray-200 lg:py-6">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= round_presenter.handicap %>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= link_to new_user_round_path(@user) do %>
+  <div class="fixed bottom-0 w-full h-12 bg-black">
+    <%= embedded_svg "../svgs/add-circle.svg", class: "h-20 w-20 flex -m-10 mx-auto", stroke: "#FFFFFF", fill: "#ed8936" %>
+  </div>
+<% end %>%
