@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @user = User.includes(rounds: :course).where(id: 1).first
+    redirect_to user_rounds_path(1)
   end
 end
