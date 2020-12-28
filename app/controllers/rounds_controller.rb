@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class RoundsController < ApplicationController
+  before_action :set_user, only: [:index, :create]
+
+  def index
+  end
+
   def new
     @round = Round.new
   end
@@ -16,6 +21,10 @@ class RoundsController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.includes(rounds: :course).find(params[:user_id])
+  end
+
   def round_params
     params.require(:round).permit(
       :score,
@@ -23,6 +32,6 @@ class RoundsController < ApplicationController
       :slope,
       :date,
       :course_id
-    ).merge(user_id: params[:user_id])
+    ).merge(user: @user)
   end
 end
