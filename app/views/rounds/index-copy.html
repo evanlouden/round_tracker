@@ -12,10 +12,27 @@
     <div class="inline-block min-w-full overflow-hidden align-middle rounded-lg">
       <table class="min-w-full">
         <tbody class="bg-white">
-          <%= turbo_frame_tag "rounds" do %>
-            <%= link_to "George Wright", user_rounds_path(course_id: 29) %>
-            <%= render @rounds %>
-          <% end %>
+          <% @user.rounds.each do |round| %>
+            <% round_presenter = RoundPresenter.new(round) %>
+            <tr>
+              <td class="pt-4 pb-2 pl-4 whitespace-no-wrap border-b border-gray-200 lg:py-6">
+                <div class="mb-2 text-lg leading-5 text-gray-900">
+                  <%= round.course.name %>
+                </div>
+                <div class="text-xs italic leading-5 text-gray-800">
+                  <%= round.date.strftime("%b %e, %Y") %>
+                </div>
+              </td>
+              <td class="pt-4 pb-2 pr-4 text-center whitespace-no-wrap border-b border-gray-200 lg:py-6">
+                <div class="mb-2 text-lg leading-5 text-right text-gray-900">
+                  <%= round.score %>
+                </div>
+                <div class="text-xs italic leading-5 text-right text-gray-800">
+                  <%= round_presenter.round_differential %>
+                </div>
+              </td>
+            </tr>
+            <% end %>
         </tbody>
       </table>
     </div>
@@ -27,3 +44,4 @@
     <%= embedded_svg "../svgs/add-circle.svg", class: "h-20 w-20 flex -mt-10", stroke: "#FFFFFF", fill: "#ed8936" %>
   <% end %>
 </div>
+

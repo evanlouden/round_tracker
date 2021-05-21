@@ -4,6 +4,13 @@ class RoundsController < ApplicationController
   before_action :set_user, only: [:index, :create]
 
   def index
+    # @rounds = Round.filter(params.slice(:course_id)).order(date: :desc)
+    @rounds = if params[:course_id].present?
+                @user.rounds.where(course_id: params[:course_id])
+              else
+                @user.rounds
+              end
+    puts @rounds.length
   end
 
   def new

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Round < ApplicationRecord
+  include Filterable
   belongs_to :user
   belongs_to :course
 
@@ -8,6 +9,8 @@ class Round < ApplicationRecord
   validates :rating, presence: true
   validates :score, presence: true
   validates :slope, presence: true
+
+  scope :filter_by_course_id, ->(course_id) { where course_id: course_id}
 
   def handicap_differential
     HandicapDifferential.calculate(self)
