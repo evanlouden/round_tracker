@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 class RoundsController < ApplicationController
-  before_action :set_user, only: [:index, :create]
+  before_action :set_user, only: %i[index create]
 
   def index
-    # @rounds = Round.filter(params.slice(:course_id)).order(date: :desc)
-    @rounds = if params[:course_id].present?
-                @user.rounds.where(course_id: params[:course_id])
-              else
-                @user.rounds
-              end
-    puts @rounds.length
+    @rounds = Queries::RoundsQuery.call(query_params)
   end
 
   def new
@@ -40,5 +34,9 @@ class RoundsController < ApplicationController
       :date,
       :course_id
     ).merge(user: @user)
+  end
+
+  def query_params
+    params.permit(:start_date, :end_date, :course_id)
   end
 end

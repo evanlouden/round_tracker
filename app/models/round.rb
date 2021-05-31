@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Round < ApplicationRecord
-  include Filterable
   belongs_to :user
   belongs_to :course
 

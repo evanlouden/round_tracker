@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :rounds, -> { order(date: :desc) }
+  has_many :rounds
+  has_many :courses, -> { distinct }, through: :rounds
 
   validates :name, presence: true
 
