@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RoundPresenter
   attr_reader :round
 
@@ -10,7 +11,10 @@ class RoundPresenter
   end
 
   def round_differential
-    differential = (round.handicap_differential - handicap).round(1)
-    differential > 0 ? "+#{differential}" : differential
+    differential.positive? ? "+#{differential}" : differential
+  end
+
+  def differential
+    (round.handicap_differential - handicap).round(1)
   end
 end

@@ -9,6 +9,8 @@ class Round < ApplicationRecord
   validates :score, presence: true
   validates :slope, presence: true
 
+  scope :filter_by_course_id, ->(course_id) { where course_id: course_id}
+
   def handicap_differential
     HandicapDifferential.calculate(self)
   end
