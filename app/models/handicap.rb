@@ -24,9 +24,9 @@ class Handicap
 
   def last_twenty_rounds
     if include_round
-      round.user.rounds.order(date: :desc).limit(20)
+      round.user.rounds.full.order(date: :desc).limit(20)
     else
-      round.user.rounds.where("date < ?", round.date).order(date: :desc).limit(20)
+      round.user.rounds.full.where("date < ?", round.date).order(date: :desc).limit(20)
     end
   end
 end
