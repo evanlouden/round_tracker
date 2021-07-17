@@ -8,7 +8,7 @@ class RoundsController < ApplicationController
   end
 
   def new
-    @round = Round.new
+    @round = Round.new(date: Date.today)
   end
 
   def create
@@ -16,7 +16,7 @@ class RoundsController < ApplicationController
     if @round.save
       redirect_to root_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,8 @@ class RoundsController < ApplicationController
       :rating,
       :slope,
       :date,
-      :course_id
+      :course_id,
+      :holes
     ).merge(user: @user)
   end
 

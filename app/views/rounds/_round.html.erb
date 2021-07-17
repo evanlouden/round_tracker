@@ -13,7 +13,11 @@
       <%= round.score %>
     </div>
     <div class="text-xs italic leading-5 text-right text-gray-800">
-      <%= round_presenter.round_differential %>
+      <% if round.eighteen_holes? %>
+        <%= round_presenter.round_differential %>
+      <% else %>
+        <%= round.holes %> holes
+      <% end %>
     </div>
   </td>
 </tr>
