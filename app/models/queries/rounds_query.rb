@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class Queries::RoundsQuery
-  attr_reader :params
-  attr_accessor :rounds
+  attr_reader :user, :params
 
-  def initialize(params)
+  def initialize(user, params = {})
+    @user = user
     @params = params
   end
 
-  def self.call(params = {})
-    new(params).call
+  def self.call(user, params = {})
+    new(user, params).call
   end
 
   def call
-    rounds = Round.all
+    rounds = user.rounds
     rounds = rounds.where(course_id: params[:course_id]) if filter_by_course?
     rounds = rounds.where(date: params[:start_date]..params[:end_date]) if filter_by_date?
     rounds.order(date: :desc)

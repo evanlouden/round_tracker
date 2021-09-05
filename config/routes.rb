@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :rounds, only: [:index, :new, :create]
+    resources :rounds, only: [:edit, :update], shallow: true
   end
   resources :courses, only: [:new, :create]
 end

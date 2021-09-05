@@ -1,0 +1,18 @@
+<div class="text-sm text-right text-blue-700">
+  <%= link_to "+ New Course", new_course_path %>
+</div>
+<%= f.input :date, required: false, html5: true, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+<%= f.input :course_id, required: false, collection: Course.alaphabetical, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+<div class="grid grid-cols-2 gap-4">
+  <%= f.input :score, required: false, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+  <%= f.input :rating, required: false, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+</div>
+<div class="grid grid-cols-2 gap-4">
+  <%= f.input :slope, required: false, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+  <%= f.input :cost, required: false, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+</div>
+<%= f.input :holes, required: false, wrapper_html: { class: "mb-4" }, label_html: { class: "block text-gray-900 mb-2" }, input_html: { class: "shadow bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" } %>
+<div class="flex items-center justify-center">
+  <%= link_to "Cancel", root_path, class: "mr-8" %>
+  <%= f.button :button, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" %>
+</div>
