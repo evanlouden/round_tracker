@@ -33,7 +33,8 @@ class RoundsController < ApplicationController
       :slope,
       :date,
       :course_id,
-      :holes
+      :holes,
+      :cost
     ).merge(user: @user)
   end
 
