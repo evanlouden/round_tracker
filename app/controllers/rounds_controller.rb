@@ -4,7 +4,7 @@ class RoundsController < ApplicationController
   before_action :set_user, only: %i[index create]
 
   def index
-    @rounds = Queries::RoundsQuery.call(query_params)
+    @rounds = Queries::RoundsQuery.call(@user, query_params)
   end
 
   def new
@@ -12,7 +12,7 @@ class RoundsController < ApplicationController
   end
 
   def create
-    @round = Round.new(round_params)
+    @round = @user.rounds.build(round_params)
     if @round.save
       redirect_to root_path
     else
@@ -23,7 +23,7 @@ class RoundsController < ApplicationController
   private
 
   def set_user
-    @user = User.includes(rounds: :course).find(params[:user_id])
+    @user = User.includes(rounds: :course).find(1)
   end
 
   def round_params
@@ -35,7 +35,7 @@ class RoundsController < ApplicationController
       :course_id,
       :holes,
       :cost
-    ).merge(user: @user)
+    )
   end
 
   def query_params
