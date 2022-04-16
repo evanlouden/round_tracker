@@ -3,7 +3,7 @@
     <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <div class="flex justify-between min-w-full overflow-hidden bg-white rounded-lg">
         <div class="py-3 pl-4">
-          <div class="mx-1 text-xl"><%= @user.name %> <span class="italic text-base ml-2"><%= @user.handicap %></span></div>
+          <div class="mx-1 text-xl"><%= @user.name %> <span class="ml-2 text-base italic"><%= @user.handicap %></span></div>
           <div class="mx-1">Rounds: <%= @rounds.length %></div>
           <div class="mx-1">Cost: <%= @rounds.sum(:cost) %></div>
         </div>
@@ -14,10 +14,10 @@
     </div>
   </div>
 
-  <div class="flex flex-col m-4 overflow-hidden border border-gray-200 rounded-lg shadow-md hidden" data-search-target="form">
+  <div class="flex-col hidden m-4 overflow-hidden border border-gray-200 rounded-lg shadow-md" data-search-target="form">
     <div class="px-1 py-2 bg-white">
       <%= form_with url: user_rounds_path(@user), method: :get, data: { target: "rounds "}, class: "py-2 px-3 text-right sm:px-6 flex flex-col justify-center" do |form| %>
-        <%= form.select :course_id, @user.courses.pluck(:name, :id), { selected: params[:course_id].to_i, include_blank: true }, class: "mb-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        <%= form.select :course_id, @user.courses.order(:name).pluck(:name, :id), { selected: params[:course_id].to_i, include_blank: true }, class: "mb-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         <div class="grid grid-cols-2 gap-4">
           <%= form.date_field :start_date, value: params[:start_date]&.to_date, class: "my-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           <%= form.date_field :end_date, value: params[:end_date]&.to_date || Date.today, class: "my-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
