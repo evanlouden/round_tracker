@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :rounds, only: [:index, :new, :create]
   end
-  resources :courses, only: [:new, :create]
+  resources :courses, only: [:new, :create, :show]
 end
