@@ -14,6 +14,12 @@ class CoursesController < ApplicationController
     end
   end
 
+  def show
+    course = Course.find(params[:id])
+    round = course.rounds.last
+    render json: {rating: round.rating, slope: round.slope}
+  end
+
   private
 
   def course_params
