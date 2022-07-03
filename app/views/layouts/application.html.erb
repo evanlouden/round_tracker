@@ -9,8 +9,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
-  <% background_color = Rails.env.production? ? "bg-black" : "bg-yellow-200" %>
+  <% background_color = Rails.env.production? ? "bg-black" : "bg-green-200" %>
   <body class=<%= background_color %>>
     <%= yield %>
   </body>
