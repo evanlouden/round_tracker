@@ -1,0 +1,22 @@
+<div class="max-w-xl m-4 sm:mx-auto" data-controller="rounds">
+  <%= simple_form_for @round, url: user_rounds_path do |f| %>
+    <div class="text-sm text-right text-blue-700">
+      <%= link_to "+ New Course", new_course_path %>
+    </div>
+    <%= f.input :date, required: false, html5: true %>
+    <%= f.input :course_id, required: false, collection: Course.alaphabetical, input_html: { data: { action: "change->rounds#autofillRecentRoundInfo" } } %>
+    <div class="grid grid-cols-2 gap-4" >
+      <%= f.input :slope, required: false, input_html: { data: { rounds_target: "slope" } } %>
+      <%= f.input :rating, required: false, input_html: { data: { rounds_target: "rating" } } %>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <%= f.input :score, required: false %>
+      <%= f.input :cost, required: false %>
+    </div>
+    <%= f.input :holes, required: false %>
+    <div class="flex items-center justify-center">
+      <%= link_to "Cancel", root_path, class: "mr-8" %>
+      <%= f.button :button %>
+    </div>
+  <% end %>
+</div>
