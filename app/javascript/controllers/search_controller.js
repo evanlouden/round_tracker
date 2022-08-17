@@ -6,8 +6,10 @@ export default class extends Controller {
   toggleSearch() {
     if (this.formTarget.classList.contains("hidden")) {
       this.formTarget.classList.remove("hidden")
+      this.formTarget.classList.add("flex")
     } else {
       this.formTarget.classList.add("hidden")
+      this.formTarget.classList.remove("flex")
     }
   }
 }
