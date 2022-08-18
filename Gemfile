@@ -18,10 +18,15 @@ gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
-end
-
 group :development do
   gem "web-console"
+end
+
+group :development, :test do
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails", "~> 5.1.2"
+end
+
+group :test do
+  gem "shoulda-matchers", "~> 5.1.0"
 end
