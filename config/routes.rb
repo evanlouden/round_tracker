@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root "home#index"
+  root 'home#index'
 
   resources :users do
-    resources :rounds, only: [:index, :new, :create]
+    resources :rounds, only: %i[index new create]
   end
-  resources :courses, only: [:new, :create, :show]
+  resources :courses, only: %i[new create show]
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
