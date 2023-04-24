@@ -2,7 +2,7 @@
 
 class HandicapDifferential
   attr_reader :round
-  delegate :score, :rating, :slope, to: :round
+  delegate :esc_score, :rating, :slope, to: :round
 
   def self.calculate(round)
     new(round).calculate
@@ -13,6 +13,6 @@ class HandicapDifferential
   end
 
   def calculate
-    (((score - rating) * 113) / slope).round(1)
+    (((esc_score - rating) * 113) / slope).round(1)
   end
 end

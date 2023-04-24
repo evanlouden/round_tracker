@@ -7,6 +7,7 @@ class Round < ApplicationRecord
   validates :date, presence: true
   validates :rating, presence: true, if: :eighteen_holes?
   validates :score, presence: true
+  validates :esc_score, presence: true
   validates :slope, presence: true, if: :eighteen_holes?
 
   scope :filter_by_course_id, ->(course_id) { where course_id: course_id}

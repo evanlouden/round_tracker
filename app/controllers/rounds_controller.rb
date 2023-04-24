@@ -29,6 +29,7 @@ class RoundsController < ApplicationController
   def round_params
     params.require(:round).permit(
       :score,
+      :esc_score,
       :rating,
       :slope,
       :date,
