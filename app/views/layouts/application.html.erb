@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class=<%= Rails.env.production? ? "bg-black" : "bg-yellow-200" %>>
+  <body class="bg-black">
     <%= yield %>
   </body>
 </html>
