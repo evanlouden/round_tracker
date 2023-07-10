@@ -15,17 +15,17 @@ class Queries::RoundsQuery
   def call
     rounds = user.rounds
     rounds = rounds.where(course_id: params[:course_id]) if filter_by_course?
-    rounds = rounds.where(date: params[:start_date]..params[:end_date]) if filter_by_date?
+    rounds = rounds.where(date: start_date..params[:end_date])
     rounds.order(date: :desc)
   end
 
   private
 
-  def filter_by_date?
-    params[:start_date].present? && params[:end_date].present?
-  end
-
   def filter_by_course?
     params[:course_id].present?
+  end
+
+  def start_date
+    params[:start_date] || Date.new(Time.current.year)
   end
 end
